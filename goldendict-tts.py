@@ -177,7 +177,7 @@ def run_piper_tts(text, lang, output_path, conf):
         script_path,
         "--lang", lang_code,
         "--text", text,
-        "--output_file", temp_output_path
+        "--output-file", temp_output_path
     ]
 
     try:
