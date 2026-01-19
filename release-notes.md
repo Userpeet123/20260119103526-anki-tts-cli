@@ -1,5 +1,10 @@
 # Release Notes
 
+## [20260119115317] - 2026-01-19
+### Documentation
+- Added RFC analyzing the appropriateness of the project name.
+- Updated README title to "Anki TTS CLI" to reflect its generic usage beyond GoldenDict.
+
 ## [20260119114952] - 2026-01-19
 ### Changed
 - Updated `README.md` to explicitly list local repository dependencies (Anki Addon, Piper TTS).

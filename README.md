@@ -1,13 +1,15 @@
-# GoldenDict Anki TTS Integration
+# Anki TTS CLI (formerly GoldenDict TTS)
 
-This project adapts the Anki TTS Player addon logic for use with GoldenDict and AutoHotkey (AHK). It allows you to:
+This project adapts the Anki TTS Player addon logic for use as a universal Command Line Interface (CLI). It allows you to integrate Anki's audio capabilities into **GoldenDict**, **AutoHotkey (AHK)**, or any other tool.
+
+It allows you to:
 1. Play audio from local "Audio Dictionaries" (preserving Anki addon configuration).
 2. Generate/Play TTS using Piper or Google TTS (gTTS).
 3. Share the audio cache and rotation state with the Anki addon.
 4. Override settings specifically for GoldenDict without affecting Anki.
 
 ## Table of Contents
-- [GoldenDict Anki TTS Integration](#goldendict-anki-tts-integration)
+- [Anki TTS CLI (formerly GoldenDict TTS)](#anki-tts-cli-formerly-goldendict-tts)
   - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
     - [Local Repositories](#local-repositories)
