@@ -12,12 +12,21 @@ from pathlib import Path
 
 # --- Paths & Setup ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-WORKSPACE_ROOT = os.path.dirname(SCRIPT_DIR)
-# Adjust this folder name if the Anki addon folder name changes
-ANKI_ADDON_DIR_NAME = "20250421115831-anki-gtts-player"
-ANKI_ADDON_PATH = os.path.join(WORKSPACE_ROOT, ANKI_ADDON_DIR_NAME)
+LOCAL_CONFIG_PATH = os.path.join(SCRIPT_DIR, "config.json")
+
+def load_local_config():
+    if not os.path.exists(LOCAL_CONFIG_PATH):
+        return {"anki_addon_path": "../20250421115831-anki-gtts-player", "overrides": {}}
+    try:
+        with open(LOCAL_CONFIG_PATH, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return {"anki_addon_path": "../20250421115831-anki-gtts-player", "overrides": {}}
+
+LOCAL_CONF = load_local_config()
+ANKI_ADDON_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, LOCAL_CONF.get("anki_addon_path")))
 VENDOR_PATH = os.path.join(ANKI_ADDON_PATH, "vendor")
-CONFIG_PATH = os.path.join(ANKI_ADDON_PATH, "config.json")
+DONOR_CONFIG_PATH = os.path.join(ANKI_ADDON_PATH, "config.json")
 
 # Add vendor to sys.path to load gTTS from the Anki addon
 if os.path.exists(VENDOR_PATH):
@@ -36,15 +45,21 @@ except ImportError:
 # --- Core Logic Ported from Anki Addon ---
 
 def load_config():
-    if not os.path.exists(CONFIG_PATH):
-        print(f"Error: Config file not found at {CONFIG_PATH}", file=sys.stderr)
-        return {}
-    try:
-        with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"Error loading config: {e}", file=sys.stderr)
-        return {}
+    conf = {}
+    if os.path.exists(DONOR_CONFIG_PATH):
+        try:
+            with open(DONOR_CONFIG_PATH, 'r', encoding='utf-8') as f:
+                conf = json.load(f)
+        except Exception as e:
+            print(f"Error loading donor config: {e}", file=sys.stderr)
+    
+    # Apply overrides from local config.json
+    overrides = LOCAL_CONF.get("overrides", {})
+    for key, value in overrides.items():
+        if key != "comments":
+            conf[key] = value
+            
+    return conf
 
 def sanitize_filename(text):
     text = re.sub(r'[<>:"/\\|?*]', '', text)
