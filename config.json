@@ -1,6 +1,0 @@
-{
-    "anki_addon_path": "../20250421115831-anki-gtts-player",
-    "overrides": {
-        "comments": "Any key here will override the value in the Anki addon config.json"
-    }
-}
