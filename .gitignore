@@ -20,6 +20,11 @@ a/
 # OS/editor junk
 .DS_Store
 Thumbs.db
+
+# Project local config
+config.json
+.DS_Store
+Thumbs.db
 *.log
 history
 gd_log.txt
