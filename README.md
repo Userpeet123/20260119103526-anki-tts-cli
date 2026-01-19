@@ -25,8 +25,8 @@ It allows you to:
 
 ### Local Repositories
 This project depends on the following local repositories being present in your workspace:
-- **Anki Addon** (`20250421115831-anki-gtts-player`): Used for shared configuration, cache, and vendored libraries.
-- **Piper TTS** (`20241206010110-piper-tts`): Required if using the Piper TTS engine. The path to `piper_tts.py` acts as the driver.
+- **Anki Addon** ([`20250421115831-anki-gtts-player`](https://github.com/voothi/20250421115831-anki-gtts-player)): Used for shared configuration, cache, and vendored libraries.
+- **Piper TTS** ([`20241206010110-piper-tts`](https://github.com/voothi/20241206010110-piper-tts)): Required if using the Piper TTS engine. The path to `piper_tts.py` acts as the driver.
 
 ### Software
 - Python 3.x
